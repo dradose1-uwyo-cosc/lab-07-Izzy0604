@@ -1,9 +1,9 @@
-# Your Name Here
+# Isabella Cardoso
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section: 
-# Sources, people worked with, help given to: 
+# 10/31/2024
+# Lab #7
+# Lab Section: 12
+# Sources, people worked with, help given to: Kelly Joyce, My TA
 # your
 # comments
 # here
@@ -17,9 +17,18 @@
     # If a user did not enter a number output a statement saying so
 # You will continue to prompt the user until a proper integer value is entered
 
-factorial = 1
+upper_bound = input("Enter a upper bound: ")
+while upper_bound.isdigit() == False:
+    print("Only positive numbers can be entered as a bound")
+    upper_bound = input("Enter a upper bound: ")
 
-print(f"The result of the factorial based on the given bound is {factorial}")
+new_upper_bound = 1 
+bound = int(upper_bound)   
+while bound > 1:
+    new_upper_bound *= bound 
+    bound -= 1
+print(new_upper_bound)
+
 
 print("*"*75)
 # Create a while loop that prompts a user for input of an integer values
@@ -37,7 +46,19 @@ print("*"*75)
 # All this together means you will have an intensive while loop that includes multiple if statements, likely with some nesting 
 # The sum should start at 0 
 
-num_sum = 0 
+num_sum = 0
+check=True
+while check:
+    integer = input("Enter any integer or enter exit: ")
+    if integer.lower() == 'exit':
+        check=False
+        break
+    else:
+        if integer[0] == "-":
+            new_integer = integer.replace("-", "")
+            num_sum -= int(new_integer)
+        else:
+            num_sum += int(integer)
 
 print(f"Your final sum is {num_sum}")
 
@@ -59,4 +80,33 @@ print("*"*75)
 # Print the result of the equation
 # Again, loop through prompting the user for input until `exit` in any casing is input 
 
-        
+while True:
+    calculation = input("What would you like to calculate?")
+    if calculation.lower() == "exit":
+        break
+    calculation = calculation.replace(" ", "")
+    signs = ["+", "-", "*", "/", "%"]
+    num_sign = 0
+    for specific_sign in signs:
+        if specific_sign in calculation:
+            num_sign = specific_sign
+            break
+    if num_sign:
+        num1, num2 = calculation.split(num_sign)
+        if num1.isdigit() and num2.isdigit():
+            num1, num2 = int(num1), int(num2)
+            if "+" in calculation:
+                answer = num1 + num2
+            elif "-" in calculation:
+                answer = num1 - num2
+            elif "*" in calculation:
+                answer = num1 * num2
+            elif "/" in calculation:
+                answer = num1 / num2
+            elif "%" in calculation:
+                answer = num1 %  num2
+            print(f"The answer to {num1} {num_sign} {num2} is {answer}")
+        else:
+            print("Please enter real numbers")
+    else:
+        print("Please enter a numbers")
